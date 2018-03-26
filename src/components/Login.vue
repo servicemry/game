@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fuild">
+  <div class="container-fluid">
       <div class="loginheader text-center hidden-xs">
           <img height="120"  src="./../assets/images/login/logo.png">
       </div>
@@ -7,18 +7,18 @@
       <div class="loginbody">
           <div class="loginform">
             <div class="inputuser">
-                <input type="text" class="inputname" placeholder="请输入用户名">
+                <input type="text" v-model="username" class="inputname" placeholder="请输入用户名">
             </div>
             
             <div class="inputuser">
-                <input type="password" class="inputname" placeholder="请输入密码">
+                <input type="password" v-model="password" class="inputname" placeholder="请输入密码">
             </div>
             
             <div class="inputuser">
-                <input type="text" class="inputname" placeholder="验证码">
+                <input type="text" v-model="validate" class="inputname" placeholder="验证码">
             </div>
             
-            <input type="button" @click="returnMain()" class="inputbutton" value="登录"/>
+            <input type="button" @click="login()" class="inputbutton" value="登录"/>
           </div>
       </div>
     <ul class="link_right hidden-xs">
@@ -45,11 +45,27 @@
 export default {
   data () {
     return {
+        username:'testuser ',password:'123456',validate:'123123'
     }
-  },
+  },  
   methods:{
-      returnMain(){
-          this.$router.push({path:'/main'})
+      login(){
+          if(this.username===''||this.password===''||this.validate===''){
+              console.log("请输入相关信息")
+              return
+          }else{
+              fetch('/api/users',{
+                method:'post',
+                body:JSON.stringify({username:this.username,password:this.password}),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }).then(res=>{
+                return res.json();
+            }).then(data=>{
+                this.$router.push({path:'/main'})
+            })
+          }
       }
   }
 }
