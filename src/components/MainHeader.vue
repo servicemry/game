@@ -21,7 +21,7 @@
             <div class="col">
               <img src="./../assets/images/avator.png" /></div>
             <div class="col">
-              <h6>RAINBOW 欢迎您！</h6>
+              <h6>欢迎您！</h6>
               <p>余额：
                 <b>52133.64</b>冻结：
                 <b>52133.64</b>

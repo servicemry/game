@@ -7,18 +7,18 @@
       <div class="loginbody">
           <div class="loginform">
             <div class="inputuser">
-                <input type="text" v-model="username" class="inputname" placeholder="请输入用户名">
+                <input type="text" v-model="user.username" class="inputname" placeholder="请输入用户名">
             </div>
             
             <div class="inputuser">
-                <input type="password" v-model="password" class="inputname" placeholder="请输入密码">
-            </div>
-            
-            <div class="inputuser">
-                <input type="text" v-model="validate" class="inputname" placeholder="验证码">
+                <input type="password" v-model="user.password" class="inputname" placeholder="请输入密码">
             </div>
             
             <input type="button" @click="login()" class="inputbutton" value="登录"/>
+            
+            <input type="button" class="inputbutton" value="线路检测"/>
+            
+            
           </div>
       </div>
     <ul class="link_right hidden-xs">
@@ -28,13 +28,13 @@
       
         <div class="loginfooter hidden-xs">
             <div class="foot">
-                <p><img src="./../assets/images/nsc_login_footer_new.png"></p>
+                <p class="ptext"><img src="./../assets/images/nsc_login_footer_new.png"></p>
                 <div class="browser"><b>推荐浏览器</b>
                 <a href="//sw.bos.baidu.com/sw-search-sp/software/6a6217440c026/ChromeStandalone_62.0.3202.89_Setup.exe" target="_blank"><i class="icon ic-chrome"></i> 谷歌Chrome</a> / 
                 <a href="//download.firefox.com.cn/releases-sha2/stub/official/zh-CN/Firefox-latest.exe" target="_blank"><i class="icon ic-firefox"></i> 火狐Firefox</a> / 
                 <a href="//support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads" target="_blank"><i class="icon ic-ie"></i> IE 10.0 以上</a>
                 </div>
-                <p>Copyright © CXGame 2010-2018 创新游戏 版权所有</p>
+                <p class="ptext">Copyright © CXGame 2010-2018 创新游戏 版权所有</p>
             </div>
         </div>
   </div>
@@ -43,27 +43,40 @@
 <script>
 
 export default {
-  data () {
+    data () {
     return {
-        username:'testuser ',password:'123456',validate:'123123'
+        user:{
+            username:'testuser ',password:'123456'
+        }
     }
-  },  
-  methods:{
+  }, 
+  // 组件内路由安全守卫：只要定向到login页面，就清除用户所有的状态
+    beforeRouteEnter: (to, from, next) => {
+      next(vm=>vm.$store.commit('setUserStatus',null))
+    },
+    methods:{
       login(){
-          if(this.username===''||this.password===''||this.validate===''){
+          if(this.username===''||this.password===''){
               console.log("请输入相关信息")
               return
           }else{
               fetch('/api/users',{
                 method:'post',
-                body:JSON.stringify({username:this.username,password:this.password}),
+                body:JSON.stringify({username:this.user.username,password:this.user.password}),
                 headers:{
                     'Content-Type': 'application/json'
                 }
             }).then(res=>{
                 return res.json();
             }).then(data=>{
-                this.$router.push({path:'/main'})
+                if(data.success==0){
+                    window.localStorage.setItem('token',data.token);
+                    this.$store.commit('setUserStatus',this.user)
+                    this.$router.push({path:'/main'})
+                }else{
+                    console.log(data.msg);
+                    return;
+                }
             })
           }
       }
