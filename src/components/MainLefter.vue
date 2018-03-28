@@ -28,14 +28,21 @@ export default {
   created(){
     fetch('/api/types',{
       method:'get',
-      headers:{"Content-type":"application/json"}
+      headers:{
+        "Content-type":"application/json",
+        "token":this.$store.getters.token
+      }
     })
     .then(res=>res.json())
     .then(data=>{
-      this.types=data
+      if(data.success==1){
+        console.log(data.msg);
+      }else{
+        this.types=data
+      }
     })
     .catch(err=>{
-      console.log(err)
+      console.log(err);
     })
   }
 }

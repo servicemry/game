@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export const store=new Vuex.Store({
     // 设置属性
     state: {
-        currentUser:null,
-        token:window.localStorage.getItem('token')
+        currentUser:localStorage.getItem('user'),
+        token:localStorage.getItem('token')
     },
     // 获取属性状态
     getters: {
@@ -22,7 +22,7 @@ export const store=new Vuex.Store({
                 state.currentUser=user
             }else{
                 state.currentUser=null
-                window.localStorage.removeItem('token')
+                localStorage.removeItem('token')
             }
         }
     },

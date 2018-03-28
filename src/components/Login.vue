@@ -46,7 +46,7 @@ export default {
     data () {
     return {
         user:{
-            username:'testuser ',password:'123456'
+            username:'testuser',password:'123456'
         }
     }
   }, 
@@ -70,8 +70,9 @@ export default {
                 return res.json();
             }).then(data=>{
                 if(data.success==0){
-                    window.localStorage.setItem('token',data.token);
-                    this.$store.commit('setUserStatus',this.user)
+                    localStorage.setItem('token',data.token)
+                    localStorage.setItem('user',this.user.username)
+                    this.$store.commit('setUserStatus',this.user.username)
                     this.$router.push({path:'/main'})
                 }else{
                     console.log(data.msg);

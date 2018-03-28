@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 
 // 路由全局守卫，在没登录的情况下，不让进入任何页面
 router.beforeEach((to,from,next)=>{
-  if(store.getters.token==''){
+  if(store.getters.currentUser==null){
     if(to.path=='/'){
       next()
     } else{
