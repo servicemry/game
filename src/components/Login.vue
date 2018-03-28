@@ -69,7 +69,7 @@ export default {
             }).then(res=>{
                 return res.json();
             }).then(data=>{
-                if(data.success==0){
+                if(data.success==1){
                     localStorage.setItem('token',data.token)
                     localStorage.setItem('user',this.user.username)
                     this.$store.commit('setUserStatus',this.user.username)

@@ -7,25 +7,25 @@
       <div class="container-fluid index-imgmenu">
         <div class="row">
           <div class="col-sm-6 col-md-3">
-            <router-link to="/">
+            <router-link to="">
               <img src="./../assets/images/index-img1.jpg" class="img-responsive center-block" /></router-link>
           </div>
           <div class="col-sm-6 col-md-3">
-            <router-link to="/">
+            <router-link to="">
               <img src="./../assets/images/index-img2.jpg" class="img-responsive center-block" /></router-link>
           </div>
           <div class="col-sm-6 col-md-3">
-            <router-link to="/">
+            <router-link to="">
               <img src="./../assets/images/index-img3.jpg" class="img-responsive center-block" /></router-link>
           </div>
           <div class="col-sm-6 col-md-3">
-            <router-link to="/">
+            <router-link to="">
               <img src="./../assets/images/index-img4.jpg" class="img-responsive center-block" /></router-link>
           </div>
           <div class="col-sm-12 col-md-6">
             <div class="index-content-box">
               <div class="hd">
-                <router-link to="/" class="pull-right">提升</router-link>
+                <router-link to="" class="pull-right">提升</router-link>
                 <h3>
                   <em>▎</em>安全等级</h3></div>
               <div class="bd">
@@ -53,35 +53,15 @@
           <div class="col-sm-12 col-md-6">
             <div class="index-content-box">
               <div class="hd">
-                <router-link to="/" class="pull-right">更多</router-link>
+                <router-link to="" class="pull-right">更多</router-link>
                 <h3>
                   <em>▎</em>系统公告</h3></div>
               <div class="bd">
                 <ul class="list-unstyled notice-list">
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
-                  <li>
-                    <span class="time">01-31 16:13</span>
-                    <router-link to="/" class="ddd">· 维护功能内容信息维护功能内容信息维护功能内容信息</router-link></li>
+                  <li v-for="n in notice" :key="n">
+                    <span class="time">{{n.addTime}}</span>
+                    <router-link to="" class="ddd">{{n.title}}</router-link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -98,7 +78,29 @@
   export default{
     data () {
       return {
-        
+        notice:[]
+      }
+    },
+    created(){
+      this.loadNotice()
+    }
+    ,
+    methods:{
+      loadNotice(){
+        fetch('/api/notice/',{
+          headers:{
+            'Content-type':'application/json',
+            'token':this.$store.getters.token
+          }
+        })
+        .then(res=>res.json())
+        .then(data=>{
+          if(data.success!=-1){
+            this.notice=data;
+          }else{
+            console.log('请求公告数据失败');
+          }
+        })
       }
     },
     components: {

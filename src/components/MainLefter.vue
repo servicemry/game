@@ -35,7 +35,7 @@ export default {
     })
     .then(res=>res.json())
     .then(data=>{
-      if(data.success==1){
+      if(data.success==-1){
         console.log(data.msg);
       }else{
         this.types=data

@@ -27,7 +27,8 @@ import MainBody from './MainBody'
 
   export default {
     data() {
-      return {}
+      return {
+      }
     },
     components: {
       MainHeader,
