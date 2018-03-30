@@ -34,6 +34,7 @@ export default new Router({
     {path: '/',component: Login},
     {path: '/main',component: Main},
     {path: '/game',component: Game},
+
     {path: '/beginpay',component: BeginPay},
     {path: '/beginpay2',component: BeginPay2},
     {path: '/withdraw',component: Withdraw},

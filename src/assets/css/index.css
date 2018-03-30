@@ -3,6 +3,12 @@
 a {
   color: #666;
 }
+a :hover{
+  text-decoration: none;
+}
+a:link{
+  text-decoration: none;
+}
 /* CSS Document */
 * {
   margin: 0;
@@ -219,6 +225,7 @@ div.zindex-1 {
 }
 .nav-nav .home a:hover {
   background: #F98700;
+  text-decoration: none;
 }
 .nav-nav a {
   padding: 0!important;
@@ -250,6 +257,7 @@ div.zindex-1 {
 .nav-nav .m a:hover {
   background: #D6D6D6;
   color: #FF4800;
+
 }
 .iframeBox {
   padding-top: 95px;
@@ -480,7 +488,6 @@ body.open-lottery .iframeBox {
   .navlist .a-row a:hover {
     background: #FF8A00;
     color: #fff;
-    text-decoration: none;
   }
   .navlist .col3 a,
   .navlist .col4 a {

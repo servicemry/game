@@ -58,7 +58,7 @@
                   <em>▎</em>系统公告</h3></div>
               <div class="bd">
                 <ul class="list-unstyled notice-list">
-                  <li v-for="n in notice" :key="n">
+                  <li v-for="n in notice" :key="n.id">
                     <span class="time">{{n.addTime}}</span>
                     <router-link to="" class="ddd">{{n.title}}</router-link>
                   </li>

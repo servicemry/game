@@ -11,9 +11,51 @@
           <!-- 移动端下显示余额，充值提款 -->
           <show-info></show-info>
           <!-- 结束 移动端下显示余额，充值提款 -->
-          <div class="gamePageBox">
-          <!--开奖-->
-          <game-title></game-title>
+            <div class="gamePageBox">
+                <!--开奖-->
+          <div class="container-fluid game-head ">
+            <div class="row">
+              <div class="pull-left game-logo">
+                <h1>重庆
+                  <b>时时彩</b>
+                </h1>
+                <p>LOTTERY</p>
+              </div>
+              <div class="pull-left hidden-xs">
+                <div class="time-wrap">
+                  <div class="title">正在销售第
+                    <b>20170217-067</b>期</div>
+                  <div class="time">
+                    <span>截止时间</span>
+                    <div class="visible-sm visible-xs"></div>
+                    <span class="timeBox ">00:00:15</span></div>
+                </div>
+              </div>
+              <div class="pull-left kaijiang-row">
+                <div class="kaijiang-wrap">
+                  <div class="title">
+                    <b>20170217-067</b>期开奖号码</div>
+                  <div class="time">
+                    <div class="kj-ball-row">
+                      <span>1</span>
+                      <span>2</span>
+                      <span>3</span>
+                      <span>4</span>
+                      <span>5</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="pull-right">
+                <div class="btns">
+                  <div class="div-table">
+                    <div class="col">
+                      <router-link to="/game">近期开奖</router-link>
+                      <router-link to="/game">最佳走势</router-link></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- 开奖结束 -->
 
           <div class="container-fluid game-body">
@@ -23,7 +65,26 @@
                 <ul class="list-unstyled game-play-select">
                   <li class="cur">
                     <a href="javascript:;">五星</a></li>
-                  
+                  <li>
+                    <a href="javascript:;">四星</a></li>
+                  <li>
+                    <a href="javascript:;">后三</a></li>
+                  <li>
+                    <a href="javascript:;">前三</a></li>
+                  <li>
+                    <a href="javascript:;">后二</a></li>
+                  <li>
+                    <a href="javascript:;">前二</a></li>
+                  <li>
+                    <a href="javascript:;">定位胆</a></li>
+                  <li>
+                    <a href="javascript:;">不定位</a></li>
+                  <li>
+                    <a href="javascript:;">龙虎</a></li>
+                  <li>
+                    <a href="javascript:;">大小单双</a></li>
+                  <li>
+                    <a href="javascript:;">任选玩法</a></li>
                 </ul>
               </div>
               <div class="col-sm-2 text-right hidden-sm hidden-xs">
@@ -770,40 +831,17 @@ import MainHeader from './../MainHeader'
 import MainLefter from './../MainLefter'
 import MainFooter from './../MainFooter'
 import ShowInfo from './../ShowInfo'
-import GameTitle from './../Lottery/GameTitle'
 
 
   export default {
     data() {
-      return {
-        playgroup:[]
-      }
-    },
-    created(){
-      fetch('/api/lottery/',{
-          headers:{
-            'Content-type':'application/json',
-            'token':this.$store.getters.token
-          }
-        })
-        .then(res=>res.json())
-        .then(data=>{
-          if(data.success!=-1){
-            
-          }else{
-            console.log('请求玩法配置失败');
-          }
-        })
-    },
-    methods:{
-
+      return {}
     },
     components: {
       MainHeader,
       MainLefter,
       MainFooter,
-      ShowInfo,
-      GameTitle
+      ShowInfo
     }
   }
   </script>
