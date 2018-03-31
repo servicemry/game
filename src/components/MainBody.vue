@@ -90,7 +90,7 @@
         fetch('/api/notice/',{
           headers:{
             'Content-type':'application/json',
-            'token':this.$store.getters.token
+            'token':localStorage.getItem('token')
           }
         })
         .then(res=>res.json())
@@ -98,7 +98,7 @@
           if(data.success!=-1){
             this.notice=data;
           }else{
-            console.log('请求公告数据失败');
+            this.$router.push({path:'/'})
           }
         })
       }

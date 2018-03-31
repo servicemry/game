@@ -71,7 +71,7 @@ export default {
             }).then(data=>{
                 if(data.success==1){
                     localStorage.setItem('token',data.token)
-                    localStorage.setItem('user',this.user.username)
+                    localStorage.setItem('currentUser',this.user.username)
                     this.$store.commit('setUserStatus',this.user.username)
                     this.$router.push({path:'/main'})
                 }else{

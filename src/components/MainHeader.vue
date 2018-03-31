@@ -30,14 +30,14 @@
             <div class="col">
               <router-link to="BeginPay" class="btn btn-info">充值</router-link>
               <router-link to="Withdraw" class="btn btn-success">提现</router-link>
-              <router-link to="/"    class="btn btn-danger">退出</router-link>
+              <button @click="loginout"  class="btn btn-danger">退出</button>
             </div>
           </div>
         </div>
         <div class="clear"></div>
       </div>
     </div>
-    <div class="navlist" role="navigation">
+    <div class="navlist"  role="navigation">
       <div class="div-table">
         <div class="col col1">
           <h3>
@@ -87,3 +87,34 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default{
+    data () {
+    return {
+      
+    }
+  },
+  methods:{
+    loginout(){
+      if(!this.$store.getters.currentUser)
+      {
+        fetch('/api/users/loginout',{
+          headers:{
+            'Content-Type':'application/json',
+            'token':localStorage.getItem('token')
+          }
+      })
+      .then(res=res.json())
+      .then(data=>{
+        localStorage.removeItem('currentUser')
+        this.$router.push({path:'/'})
+      })
+      }
+      else{
+        this.$router.push({path:'/'})
+      }
+    }
+  }
+  }
+</script>

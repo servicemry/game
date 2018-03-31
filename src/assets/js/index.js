@@ -10,13 +10,13 @@ $(document).on("click",".btn-sideMenu",function () {
 
 $(document).on("mouseover",".J-a-menu",function (e) {
 	stopPropagation(e)
-	if ($("body").hasClass("open-menu")) {
-		$("body").removeClass("open-menu")
-	} else{
-		$("body").addClass("open-menu")
-	}
+	$("body").addClass("open-menu")
 })
 
+$(document).on("mouseleave",".navlist",function (e) {
+	stopPropagation(e)
+	$("body").removeClass("open-menu")
+})
 
 
 $(document).on("click","body",function (e) {

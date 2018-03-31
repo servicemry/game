@@ -30,13 +30,13 @@ export default {
       method:'get',
       headers:{
         "Content-type":"application/json",
-        "token":this.$store.getters.token
+        "token":localStorage.getItem('token')
       }
     })
     .then(res=>res.json())
     .then(data=>{
       if(data.success==-1){
-        console.log(data.msg);
+        this.$router.push({path:'/'})
       }else{
         this.types=data
       }

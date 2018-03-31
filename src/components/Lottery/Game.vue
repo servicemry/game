@@ -19,18 +19,10 @@
           <div class="container-fluid game-body">
               <!-- 玩法开始 -->
               <div class="game-play row hidden-sm hidden-xs">
-              <div class="col-sm-10">
+              <div class="col-sm-12">
                 <ul class="list-unstyled game-play-select">
-                  <li class="cur">
-                    <a href="javascript:;">五星</a></li>
-                  
-                </ul>
-              </div>
-              <div class="col-sm-2 text-right hidden-sm hidden-xs">
-                <ul class="list-unstyled pull-right">
-                  <li>
-                    <a href="javascript:;">
-                      <i class="icon-question-sign"></i>玩法介绍</a>
+                  <li  v-for="p in playgroup" :key="p.id">
+                    <a href="javascript:;">{{p.groupName}}</a>
                   </li>
                 </ul>
               </div>
@@ -64,23 +56,8 @@
                   <a href="javascript:;">组选5</a></li>
               </ul>
             </div>
-            <div class="game-play2 row hidden-sm hidden-xs">
-              <ul class="list-unstyled game-play-select">
-                <li class="label">五星特殊</li>
-                <li>
-                  <a href="javascript:;">一帆风顺</a></li>
-                <li>
-                  <a href="javascript:;">双喜临门</a></li>
-                <li>
-                  <a href="javascript:;">三星报喜</a></li>
-                <li>
-                  <a href="javascript:;">四季发财</a></li>
-              </ul>
-            </div>
-            <div class="game-play-help row hidden-sm hidden-xs" style="display: none;">
-              <div class="inner">
-                <i class="fa fa-question-circle"></i>从万位、千位、百位、十位、个位中至少两位上各选1个号码组成一注。 从万位、千位、百位、十位、个位中至少两位上各选1个号码组成一注，所选号码与开奖号码的指定位置上的号码相同，且顺序一致，即为中奖。 投注方案：万位5，百位8;开奖号码：51812，即中任二直选。</div>
-            </div>
+           
+            
 
             <!--移动端用的玩法 启动 select-->
             <div class="game-play row hidden-md hidden-lg">
@@ -296,16 +273,7 @@
             <!--统计-->
             <div class="game-play-action row">
               <div class="col-xs-12">
-                <div class="pull-left">共 0 注，计 0 元</div>
                 <div class="pull-left">
-                  <div class="pull-left">单注金额</div>
-                  <div class="input-group">
-                    <span class="input-group-addon">+</span>
-                    <input type="text" class="form-control" aria-label="" value="1">
-                    <span class="input-group-addon">-</span></div>
-                </div>
-                <div class="pull-left">
-                  <div class="pull-left">倍数</div>
                   <div class="input-group">
                     <span class="input-group-addon">+</span>
                     <input type="text" class="form-control" aria-label="" value="1">
@@ -325,26 +293,20 @@
                         </li>
                       </ul>
                     </div>
-                    <!-- /btn-group --></div>
-                  <!-- /input-group --></div>
-                
-                <div class="pull-right">
-                  <button type="button" class="btn btn-blue">添加投注</button>
-                  <button type="button" class="btn btn-blue">一键投注</button></div>
-              </div>
-            </div>
-            
-
-            <!--圆角分-->
-            <div class="row yjf-row">
-              <div class="col-xs-12">
-                <div class="pull-left">快速选择单注金额</div>
-                <div class="pull-left">
-                  <a href="javascript:;" class="cur">圆</a>
-                  <a href="">角</a>
-                  <a href="">分</a>
-                  <a href="">厘</a>
+                  </div>
                 </div>
+                <div class="pull-left">共 0 注，计 0 元</div>
+                <div class="pull-left yjf">
+                  <a href="javascript:;" class="cur">圆</a>
+                      <a href="">角</a>
+                      <a href="">分</a>
+                      <a href="">厘</a>
+                </div>
+
+                <div class="pull-right">
+                  <button type="button" class="btn btn-yellow">一键投注</button>
+                  <button type="button" class="btn btn-danger">添加选号</button>
+                  </div>
               </div>
             </div>
             <div class="lotteryBottom row">
@@ -371,7 +333,7 @@
               </div>
               <div class="col-md-3 text-right">
                 <button type="button" class="btn btn-danger">
-                  <i class="icon-ok-sign"></i>&nbsp;添加投注</button>
+                  <i class="icon-ok-sign"></i>&nbsp;确认投注</button>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#zhuihao-box">
                   <i class="icon-reorder"></i>&nbsp;智能追号</button>
               </div>
@@ -780,16 +742,16 @@ import GameTitle from './../Lottery/GameTitle'
       }
     },
     created(){
-      fetch('/api/lottery/',{
+      fetch('/api/playedgroup/',{
           headers:{
             'Content-type':'application/json',
-            'token':this.$store.getters.token
+            'token':localStorage.getItem('token')
           }
         })
         .then(res=>res.json())
         .then(data=>{
           if(data.success!=-1){
-            
+            this.playgroup=data
           }else{
             console.log('请求玩法配置失败');
           }
@@ -810,6 +772,6 @@ import GameTitle from './../Lottery/GameTitle'
 
   <style scoped>
   body { background: #B2B1B3; } 
-  .gameIframeBox { max-width: 960px; margin: 0 auto; }
+  .gameIframeBox { max-width: 1200px; margin: 0 auto; }
   </style>
   

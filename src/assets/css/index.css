@@ -194,7 +194,7 @@ div.zindex-1 {
   height: auto;
   overflow-y: auto;
   bottom: 0;
-  background: #C9C9C9;
+  background: rgb(232, 231, 235);
 }
 .nav-nav .nav {
   width: 100%!important;
@@ -271,6 +271,7 @@ div.zindex-1 {
   transition: 0.3s;
   margin-right: 10px;
 }
+
 .btn-row {
   line-height: 34px;
   padding-bottom: 10px;
@@ -370,7 +371,7 @@ body.open-lottery .nav-nav {
   left: 0;
 }
 body.open-lottery .iframeBox {
-  margin-left: 235px;
+ margin-left: 235px; 
 }
 .navbar-toggle {
   position: absolute;
@@ -435,10 +436,10 @@ body.open-lottery .iframeBox {
   .navlist {
     width: 825px;
     height: 270px!important;
-    background: #fff;
-    border-radius: 15px;
+    background:rgb(250, 247, 252);
+    border-radius: 5px;
     position: absolute;
-    left: 180px;
+    left: 400px;
     top: 81px;
     z-index: 20000;
     display: none;
@@ -939,33 +940,22 @@ a:hover {
 .btn-blue:active {
   color: #fff;
 }
-.yjf-row {
-  padding: 5px 5px;
-  line-height: 36px;
-  background: #E3E3E3;
-}
-.yjf-row div {
-  padding-right: 10px;
-}
-.yjf-row div.col-xs-12 {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.yjf-row a {
+
+.yjf a {
   float: left;
   margin: 2px;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  line-height: 34px;
+  line-height: 30px;
   background: #EDEDED;
   border: 1px solid #C8C8C8;
   border-radius: 3px;
   font-size: 14px;
   color: #000;
 }
-.yjf-row a.cur,
-.yjf-row a:hover {
+.yjf a.cur,
+.yjf a:hover {
   background: #F98700;
   color: #fff;
   text-decoration: none;
